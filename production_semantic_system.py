@@ -152,7 +152,7 @@ class ProductionSemanticSystem:
         
         # Load multilingual model
         print("🧠 Loading multilingual sentence transformer...")
-        self.semantic_model = SentenceTransformer('paraphrase-multilingual-mpnet-base-v2')
+        self.semantic_model = SentenceTransformer('intfloat/multilingual-e5-large-instruct')
         
         # Generate DIRECT embeddings (full query text)
         print("🔄 Generating direct semantic embeddings...")
