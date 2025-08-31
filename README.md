@@ -10,8 +10,8 @@ The system classifies Bengali conversational queries about land registration pro
 
 - **production_semantic_system.py**: Main classification system with training, evaluation, and inference
 - **patterns.py**: Modular pattern definitions with 54 organized Bengali regex patterns
-- **evaluation_dataset_conversational_final_corrected.csv**: Test dataset (69 examples) with Bengali queries and expected classifications  
-- **ultra_augmented_training_data.csv**: Training dataset (2,520 examples) with questions, tags, and answers
+- **test_data.csv**: Test dataset (69 examples) with Bengali queries and expected classifications  
+- **training_data.csv**: Training dataset (2,520 examples) with questions, tags, and answers
 
 ## Key Architecture
 
@@ -35,11 +35,11 @@ python3 production_semantic_system.py
 
 ### Train and evaluate
 The main script automatically:
-1. Loads training data from `ultra_augmented_training_data.csv` (2,520 examples)
+1. Loads training data from `training_data.csv` (2,520 examples)
 2. Trains the L3Cube Bengali sentence similarity model
 3. Builds FAISS HNSW index for semantic search
 4. Compiles 54 organized pattern definitions from `patterns.py`
-5. Evaluates against `evaluation_dataset_conversational_final_corrected.csv` (69 examples)
+5. Evaluates against `test_data.csv` (69 examples)
 6. Reports accuracy and failure analysis
 
 ### Key Methods

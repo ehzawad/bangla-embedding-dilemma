@@ -161,18 +161,41 @@ def get_simple_patterns() -> List[PatternMatch]:
 
 
 def get_irrelevant_patterns() -> List[PatternMatch]:
-    """Patterns for irrelevant queries"""
+    """Enhanced patterns for irrelevant queries - should be caught early"""
     return [
-        PatternMatch(r'(কাগজপত্রের ঝামেলা.*ভালো লাগে না.*সরল মানুষ.*জমি চাষ)', 'irrelevant', 2, "General frustration irrelevant"),
-        PatternMatch(r'(গরু.*অসুস্থ.*পশু চিকিৎসক.*ওষুধ)', 'irrelevant', 2, "Animal health irrelevant"),
+        # Birth registration - enhanced patterns
+        PatternMatch(r'জন্মনিবন্ধন.*করতে.*কি', 'irrelevant', 3, "Birth registration question"),
+        PatternMatch(r'জন্মসনদ.*বানাতে', 'irrelevant', 3, "Birth certificate making"),
+        PatternMatch(r'জন্মনিবন্ধন.*মোবাইল.*নম্বর', 'irrelevant', 3, "Birth registration mobile number"),
         
-        # Fix failure #43: Weather-related small talk that starts with greeting
-        PatternMatch(r'আচ্ছা ভাই.*আবহাওয়া.*খারাপ.*বৃষ্টি', 'irrelevant', 1, "Weather small talk irrelevant"),
-        PatternMatch(r'আজকে আবহাওয়া.*বৃষ্টি.*অফিসে যাব নাকি', 'irrelevant', 1, "Weather office concern irrelevant"),
+        # Religious pilgrimage - enhanced patterns
+        PatternMatch(r'হজ্ব.*করতে.*চাই', 'irrelevant', 3, "Want to do Hajj"),
+        PatternMatch(r'হজ্ব.*আবেদন.*নিজে', 'irrelevant', 3, "Hajj application by self"),
+        PatternMatch(r'ওমরাহ্‌.*করতে', 'irrelevant', 3, "Umrah pilgrimage"),
         
-        # Additional irrelevant patterns
-        PatternMatch(r'মোবাইল.*রিচার্জ.*শেষ.*কীভাবে রিচার্জ করতে হয়', 'irrelevant', 2, "Mobile recharge irrelevant"),
-        PatternMatch(r'গরু বিক্রি.*ভালো দামে.*কোথায়', 'irrelevant', 2, "Cattle selling irrelevant"),
+        # Job applications - enhanced patterns
+        PatternMatch(r'চাকরির.*আবেদন.*করতে', 'irrelevant', 3, "Job application process"),
+        PatternMatch(r'কোম্পানিতে.*আবেদন.*কি.*নিজে', 'irrelevant', 3, "Company application by self"),
+        PatternMatch(r'চাকরি.*পেতে.*কি', 'irrelevant', 3, "How to get job"),
+        
+        # Land grabbing (illegal) - enhanced patterns
+        PatternMatch(r'জমি.*দখল.*করতে.*কি', 'irrelevant', 3, "How to grab land"),
+        PatternMatch(r'দখল.*করা.*যাবে', 'irrelevant', 3, "Can grab/occupy"),
+        PatternMatch(r'কারো.*সাহায্যে.*কি.*দখল', 'irrelevant', 3, "Grab with someone's help"),
+        
+        # Travel documents - enhanced patterns
+        PatternMatch(r'পাসপোর্ট.*বানাতে.*কি', 'irrelevant', 3, "Passport making process"),
+        PatternMatch(r'ভিসা.*করতে.*কি', 'irrelevant', 3, "Visa processing"),
+        
+        # Weather/casual - enhanced patterns
+        PatternMatch(r'আবহাওয়া.*খুব.*খারাপ', 'irrelevant', 3, "Very bad weather"),
+        PatternMatch(r'আজকে.*একটা.*সুন্দর.*দিন', 'irrelevant', 3, "Today is a beautiful day"),
+        PatternMatch(r'হারিয়ে.*যাওয়া.*বই', 'irrelevant', 3, "Lost book"),
+        
+        # Technical/other - enhanced patterns
+        PatternMatch(r'মিউট.*করতে.*হলে', 'irrelevant', 3, "How to mute"),
+        PatternMatch(r'চাঁদাবাজি.*করতে.*পারে', 'irrelevant', 3, "Can do extortion"),
+        PatternMatch(r'দশ.*পারসেন্ট.*আবেদন', 'irrelevant', 3, "Ten percent application"),
     ]
 
 

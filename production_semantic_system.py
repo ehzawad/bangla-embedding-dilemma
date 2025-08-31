@@ -133,12 +133,12 @@ class ProductionSemanticSystem:
         
         # Load enhanced training data
         print("📊 Loading ultra-augmented training data...")
-        self.training_data = pd.read_csv('ultra_augmented_training_data.csv')
+        self.training_data = pd.read_csv('training_data.csv')
         print(f"   Training examples: {len(self.training_data)}")
         
         # Load Bengali-specific model
-        print("🧠 Loading Bengali sentence similarity model (L3Cube)...")
-        self.semantic_model = SentenceTransformer('l3cube-pune/bengali-sentence-similarity-sbert')
+        print("🧠 Loading LaBSE model...")
+        self.semantic_model = SentenceTransformer('sentence-transformers/LaBSE')
         
         # Generate DIRECT embeddings (full query text)
         print("🔄 Generating direct semantic embeddings...")
@@ -257,7 +257,7 @@ class ProductionSemanticSystem:
         """Evaluate the production system"""
         print("🔍 Evaluating production direct embedding system (REFACTORED)")
         
-        eval_df = pd.read_csv('evaluation_dataset_conversational_final_corrected.csv')
+        eval_df = pd.read_csv('test_data.csv')
         
         correct = 0
         total = len(eval_df)
@@ -303,12 +303,12 @@ class ProductionSemanticSystem:
         accuracy = correct / total
         avg_confidence = np.mean(confidence_scores) if confidence_scores else 0.0
         
-        print(f"\n🏆 PRODUCTION DIRECT EMBEDDING RESULTS (REFACTORED)")
+        print(f"\n🏆 PRODUCTION LaBSE + PATTERNS RESULTS")
         print("=" * 50)
         print(f"📊 Accuracy: {accuracy:.3f} ({correct}/{total}) = {accuracy*100:.1f}%")
         print(f"🔮 Average Confidence: {avg_confidence:.3f}")
         print(f"📚 Training Data: {len(self.training_data)} examples")
-        print(f"🎯 Approach: L3Cube Bengali SBERT + Organized patterns + Semantic boosting")
+        print(f"🎯 Approach: LaBSE + Organized patterns + Semantic boosting")
         
         print(f"\n📈 Method Distribution:")
         for method, count in method_counts.items():
